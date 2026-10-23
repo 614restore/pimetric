@@ -3,67 +3,212 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PiMetric Support</title>
-<meta name="description" content="Help and contact for PiMetric, practical calculators for work, money, health and everyday life on iPhone.">
+<title>PiMetric · Every calculator you'll need</title>
+<meta name="description" content="PiMetric for iPhone: feet, inches and fractions, metric, money, health, cooking and more. Say it out loud, see the work. No accounts, no ads, no tracking.">
+<meta name="apple-itunes-app" content="app-id=6817118888">
+<meta property="og:title" content="PiMetric · Every calculator you'll need">
+<meta property="og:description" content="Job-site math, money, health, cooking and more on iPhone. No accounts, no ads, no tracking.">
+<meta property="og:image" content="img/01-calculator.jpg">
+<meta property="og:type" content="website">
 <link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 <style>
-  :root { --bg: #fff; --text: #0f172a; --muted: #64748b; --line: #e2e8f0; --accent: #ea580c; --card: #f8fafc; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #07111f; --text: #e2e8f0; --muted: #94a3b8; --line: #1e293b; --accent: #fb923c; --card: #0d1929; } }
-  body { font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; color: var(--text); background: var(--bg); }
-  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-  header img { width: 72px; height: 72px; border-radius: 16px; }
-  h1 { font-size: 28px; margin: 0; }
-  .sub { color: var(--muted); margin: 0; }
-  h2 { font-size: 19px; margin-top: 32px; }
-  h3 { font-size: 16px; margin: 20px 0 4px; }
-  p { margin: 6px 0; }
+  :root {
+    --bg: #ffffff; --text: #0f172a; --muted: #5b6577; --line: #e2e8f0; --card: #f6f8fb;
+    --accent: #c2410c; --accent-soft: #fff1e8; --hero: #0f1b2d; --hero-text: #f8fafc; --hero-muted: #a9b4c4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #07111f; --text: #e2e8f0; --muted: #98a3b5; --line: #1c2a3d; --card: #0d1929;
+            --accent: #fb923c; --accent-soft: #1d1710; --hero: #0a1424; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--text); background: var(--bg); }
   a { color: var(--accent); }
-  .contact { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-top: 20px; }
-  footer { margin-top: 40px; color: var(--muted); font-size: 14px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--hero-text); text-decoration: none; font-weight: 700; letter-spacing: .04em; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .navlinks { display: flex; align-items: center; gap: 16px; font-size: 15px; }
+  .navlinks a { color: var(--hero-muted); text-decoration: none; }
+  .navlinks a:hover { color: var(--hero-text); }
+  .lang { background: transparent; border: 1px solid #33445c; color: var(--hero-text); border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+
+  .hero { background: var(--hero); color: var(--hero-text); padding-bottom: 48px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding-top: 32px; }
+  .eyebrow { color: #fb923c; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; margin: 0 0 12px; }
+  h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; }
+  .lead { color: var(--hero-muted); font-size: 19px; margin: 0 0 28px; max-width: 34em; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0f172a; text-decoration: none; font-weight: 700; padding: 14px 22px; border-radius: 14px; }
+  .cta small { display: block; font-weight: 500; font-size: 12px; line-height: 1.1; color: #475569; }
+  .cta span { line-height: 1.15; }
+  .price { color: var(--hero-muted); font-size: 14px; margin-top: 14px; }
+  .hero-shot { justify-self: center; width: min(320px, 80vw); border-radius: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+
+  section { padding: 56px 0 8px; }
+  h2 { font-size: clamp(26px, 4vw, 34px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -.01em; }
+  .section-lead { color: var(--muted); margin: 0 0 28px; max-width: 40em; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .icon { font-size: 26px; margin-bottom: 6px; }
+  .pro { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 0 6px; margin-left: 6px; vertical-align: 2px; }
+
+  .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; -webkit-overflow-scrolling: touch; }
+  .shots img { width: 220px; flex: 0 0 auto; border-radius: 18px; scroll-snap-align: start; border: 1px solid var(--line); }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .band { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+  .band ul { margin: 8px 0 0; padding-left: 20px; }
+  .band li { margin: 4px 0; }
+
+  .final { text-align: center; padding: 64px 0; }
+  .final .cta { background: var(--accent); color: #fff; }
+  .final .cta small { color: #ffe4d4; }
+
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 24px 0 40px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 820px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: left; }
+    .hero-shot { width: min(280px, 78vw); }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .navlinks a.hide-sm { display: none; }
+  }
+  @media (max-width: 520px) {
+    .grid { grid-template-columns: 1fr; }
+    .shots img { width: 180px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <img src="icon.png" alt="">
-  <div>
-    <h1>PiMetric</h1>
-    <p class="sub">Practical calculators for work, money, health and everyday life · Calculadoras prácticas para el día a día</p>
+
+<header class="hero">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="./"><img src="icon.png" alt="">PIMETRIC</a>
+      <div class="navlinks">
+        <a class="hide-sm" href="#features" data-es="Funciones">Features</a>
+        <a href="support.html" data-es="Ayuda">Support</a>
+        <button class="lang" id="lang" type="button" aria-label="Cambiar a español">Español</button>
+      </div>
+    </nav>
+
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" data-es="Para iPhone y Apple Watch">For iPhone and Apple Watch</p>
+        <h1 data-es="Todas las calculadoras que va a necesitar.">Every calculator you'll need.</h1>
+        <p class="lead" data-es="Cuentas de obra en pies, pulgadas y fracciones, o en métrico. Además dinero, salud, cocina, escuela y más. Dígalo en voz alta y vea el procedimiento paso a paso.">Job-site math in feet, inches and fractions, or metric. Plus money, health, cooking, school and more. Say it out loud and see the work, step by step.</p>
+        <a class="cta" href="https://apps.apple.com/app/pimetric/id6817118888">
+          <span><small data-es="Descárguela en el">Download on the</small><span>App Store</span></span>
+        </a>
+        <p class="price" data-es="Gratis. PiMetric Pro es una compra única de $4.99, sin suscripción.">Free. PiMetric Pro is a one-time $4.99 purchase, never a subscription.</p>
+      </div>
+      <img class="hero-shot" src="img/hero.jpg" alt="PiMetric calculator adding feet, inches and fractions" width="640" height="960">
+    </div>
   </div>
 </header>
 
-<div class="contact">
-  <strong>Need help or have an idea?</strong>
-  <p>Email <a href="mailto:devmgr.app@gmail.com">devmgr.app@gmail.com</a>. We usually answer within two business days. English or Spanish is fine.</p>
-</div>
+<main>
+  <section id="features">
+    <div class="wrap">
+      <h2 data-es="Una app. Todos los cálculos.">One app. Every calculation.</h2>
+      <p class="section-lead" data-es="Más de 100 calculadoras en 40 herramientas, cada una con el procedimiento debajo de la respuesta.">More than 100 calculators in 40 tools, each with the work shown under the answer.</p>
+      <div class="grid">
+        <div class="card"><div class="icon">📐</div><h3 data-es="Para la obra">For the job site</h3><p data-es="Pies, pulgadas y fracciones como los escribe. Cabios, concreto, madera, láminas y cercas gratis; techos, escaleras, canaletas y más con Pro.">Feet, inches and fractions the way you write them. Rafters, concrete, lumber, sheets and fences free; roofing, stairs, gutters and more with Pro.</p></div>
+        <div class="card"><div class="icon">🎙️</div><h3 data-es="Dígalo">Say It</h3><p data-es="Diga «doce pies seis más tres pulgadas y media» y obtenga la respuesta, en español o inglés.">Say "twelve feet six plus three and a half inches" and get the answer, in English or Spanish.</p></div>
+        <div class="card"><div class="icon">📏</div><h3 data-es="Imperial o métrico">Imperial or metric</h3><p data-es="Elija sus unidades en Ajustes y cada herramienta lo sigue. Las medidas de madera y láminas se quedan como se venden.">Pick your units in Settings and every tool follows. Lumber and sheet sizes stay as sold.</p></div>
+        <div class="card"><div class="icon">💵</div><h3 data-es="Dinero">Money</h3><p data-es="Cheque de pago neto, préstamos, interés, ahorro, pago de deudas, jubilación, acciones y cambio de moneda.">Take-home pay, loans, interest, savings goals, debt payoff, retirement, stocks and currency.</p></div>
+        <div class="card"><div class="icon">💪</div><h3 data-es="Salud y ejercicio">Health &amp; fitness</h3><p data-es="Calorías y macros, IMC, grasa corporal, agua, repetición máxima y ritmo de carrera.">Calories and macros, BMI, body fat, water, one-rep max and running pace.</p></div>
+        <div class="card"><div class="icon">🍳</div><h3 data-es="Todos los días">Everyday</h3><p data-es="Cocina, fechas, GPA, calculadora gráfica, conversiones, aviación, mecánica, sonido y más.">Cooking, dates, GPA, graphing, conversions, aviation, mechanics, sound and more.</p></div>
+        <div class="card"><div class="icon">📁</div><h3 data-es="Trabajos y listas">Jobs and lists</h3><p data-es="Guarde respuestas, fotos y listas de material con precios por trabajo. Exporte a PDF o CSV.">Keep answers, photos and priced material lists by job. Export to PDF or CSV.</p></div>
+        <div class="card"><div class="icon">⌚</div><h3 data-es="En todo su iPhone">All over your iPhone</h3><p data-es="App para Apple Watch, widget, atajos de Siri y botones del Centro de control.">Apple Watch app, Home Screen widget, Siri shortcuts and Control Center buttons.</p></div>
+        <div class="card"><div class="icon">🔦</div><h3 data-es="Láser Bluetooth">Bluetooth lasers<span class="pro">PRO</span></h3><p data-es="Envíe medidas de un Leica DISTO o Bosch GLM/PLR «C» directo a PiMetric.">Send measurements from a Leica DISTO or Bosch GLM/PLR "C" straight into PiMetric.</p></div>
+      </div>
+    </div>
+  </section>
 
-<h2>Common questions</h2>
+  <section aria-label="Screenshots">
+    <div class="wrap">
+      <h2 data-es="Véala en acción">See it in action</h2>
+      <p class="section-lead" data-es="Deslice para ver más.">Swipe to see more.</p>
+      <div class="shots">
+        <img src="img/01-calculator.jpg" alt="Calculator with feet and inches" loading="lazy" width="660" height="1434">
+        <img src="img/02-say-it.jpg" alt="Say It voice input" loading="lazy" width="660" height="1434">
+        <img src="img/03-materials.jpg" alt="Material list with prices" loading="lazy" width="660" height="1434">
+        <img src="img/04-jobs.jpg" alt="Jobs with saved answers" loading="lazy" width="660" height="1434">
+        <img src="img/05-laser-pro.jpg" alt="Bluetooth laser meter" loading="lazy" width="660" height="1434">
+        <img src="img/06-espanol.jpg" alt="PiMetric in Spanish" loading="lazy" width="660" height="1434">
+        <img src="img/07-privacy.jpg" alt="Privacy: no accounts, no tracking" loading="lazy" width="660" height="1434">
+        <img src="img/08-more-tools.jpg" alt="Money, health and everyday tools" loading="lazy" width="660" height="1434">
+      </div>
+    </div>
+  </section>
 
-<h3>I bought PiMetric Pro. How do I get it back on a new or reinstalled iPhone?</h3>
-<p>Sign in with the same Apple ID and open PiMetric. Pro usually unlocks by itself. If it doesn't, go to Settings → PiMetric Pro → <strong>Restore Purchases</strong>. You never pay twice.</p>
+  <section>
+    <div class="wrap split">
+      <div class="band">
+        <h2 data-es="Sus datos son suyos.">Your data is yours.</h2>
+        <ul>
+          <li data-es="Sin cuentas, sin anuncios, sin análisis, sin rastreo">No accounts, no ads, no analytics, no tracking</li>
+          <li data-es="PiMetric no tiene servidores: nunca vemos sus datos">No PiMetric servers: we never see your data</li>
+          <li data-es="Respaldo en su propio iCloud, que puede apagar">Backup goes to your own iCloud, and you can turn it off</li>
+          <li data-es="Funciona sin internet">Works offline</li>
+        </ul>
+        <p><a href="privacy.html" data-es="Lea la política de privacidad">Read the privacy policy</a></p>
+      </div>
+      <div class="band">
+        <h2>PiMetric Pro</h2>
+        <ul>
+          <li data-es="Compra única de $4.99, sin suscripción">One-time $4.99, no subscription</li>
+          <li data-es="Llene cualquier herramienta Pro gratis; Pro desbloquea la respuesta">Fill in any Pro tool free; Pro unlocks the answer</li>
+          <li data-es="Herramientas de oficio y negocio, exportar, fotos y láser">Trade and business tools, exports, photos and lasers</li>
+          <li data-es="Restáurela en cualquier iPhone con su Apple ID">Restore it on any iPhone with your Apple ID</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<h3>How do I use a promo code?</h3>
-<p>In PiMetric, go to Settings → PiMetric Pro → <strong>Redeem a Code</strong> (iOS 16.3 or later), or open the link that came with your code. Apple checks the code; Pro unlocks right away.</p>
-
-<h3>Is Pro a subscription?</h3>
-<p>No. PiMetric Pro is a one-time purchase. There is nothing to cancel.</p>
-
-<h3>Where is my data? Will I lose my jobs if I delete the app?</h3>
-<p>Your calculations, jobs, material lists, formulas and photos are stored on your iPhone and, if you are signed in to iCloud, in your own private iCloud (using Apple's CloudKit). We have no server and cannot see your data. If you delete the app, your data comes back from iCloud when you reinstall and open PiMetric. You can turn this off in PiMetric Settings → iCloud. To delete the copy in iCloud, open the iPhone Settings app › your name › iCloud › Manage Account Storage › PiMetric › Delete Data.</p>
-
-<h3>How do I connect a Bluetooth laser?</h3>
-<p>Turn on the laser's Bluetooth, then in PiMetric go to Settings → Bluetooth Laser → Connect. Leica DISTO and Bosch GLM/PLR “C” models are supported (Pro).</p>
-
-<h3>Can I use PiMetric in Spanish?</h3>
-<p>Yes. It follows your iPhone's language, or pick Español in Settings → Language. Say It understands spoken Spanish too.</p>
-
-<h3>Are the results guaranteed?</h3>
-<p>PiMetric's results are estimates to help you plan. Always confirm against your local building codes, a qualified professional, or official aviation sources. Health and pregnancy tools are not medical advice, and the paycheck, retirement and other money tools are not tax or financial advice.</p>
-
-<h2>Refunds</h2>
-<p>Purchases are handled by Apple. To ask for a refund, visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+  <section class="final">
+    <div class="wrap">
+      <h2 data-es="Pruebe PiMetric gratis.">Try PiMetric free.</h2>
+      <p class="section-lead" style="margin: 0 auto 24px" data-es="iPhone con iOS 15.1 o posterior. En español e inglés.">iPhone with iOS 15.1 or later. In English and Spanish.</p>
+      <a class="cta" href="https://apps.apple.com/app/pimetric/id6817118888">
+        <span><small data-es="Descárguela en el">Download on the</small><span>App Store</span></span>
+      </a>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <a href="privacy.html">Privacy Policy</a> · © 2026 PiMetric
+  <div class="wrap">
+    <span>© 2026 PiMetric · <span data-es="Los resultados son estimaciones para ayudarle a planear.">Results are estimates to help you plan.</span></span>
+    <span><a href="support.html" data-es="Ayuda">Support</a> · <a href="privacy.html" data-es="Privacidad">Privacy</a> · <a href="mailto:devmgr.app@gmail.com">devmgr.app@gmail.com</a></span>
+  </div>
 </footer>
+
+<script>
+(function () {
+  var nodes = document.querySelectorAll('[data-es]');
+  nodes.forEach(function (n) { n.setAttribute('data-en', n.innerHTML); });
+  var btn = document.getElementById('lang');
+  function set(lang) {
+    nodes.forEach(function (n) { n.innerHTML = n.getAttribute(lang === 'es' ? 'data-es' : 'data-en'); });
+    document.documentElement.lang = lang;
+    btn.textContent = lang === 'es' ? 'English' : 'Español';
+    btn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a español');
+    try { localStorage.setItem('pimetric-lang', lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('pimetric-lang'); } catch (e) {}
+  var start = saved || ((navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en');
+  if (start === 'es') set('es');
+  btn.addEventListener('click', function () { set(document.documentElement.lang === 'es' ? 'en' : 'es'); });
+})();
+</script>
 </body>
 </html>
